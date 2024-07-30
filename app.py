@@ -202,26 +202,25 @@ def create_pet():
 
 @app.route('/feed_pet', methods=['POST'])
 def feed_pet():
-    print("Feed Game")
-    # username = request.form['username']
-    # pet_name = request.form['pet_name']
-    # food = request.form.get('food', 'Kibble')  # Default to 'Kibble' if not specified
-    # game = Game(username)
-    # pet = next((p for p in game.get_pets() if p['Name'] == pet_name), None)
-    # if pet:
-    #     food_effects = {
-    #         'Kibble': {'hunger': 2, 'energy': 1, 'happiness': 1},
-    #         'Fish': {'hunger': 3, 'energy': 2, 'happiness': 2},
-    #         'Chicken': {'hunger': 4, 'energy': 3, 'happiness': 3},
-    #         'Vegetables': {'hunger': 1, 'energy': 2, 'happiness': 1}
-    #     }
-    #     effects = food_effects.get(food, {})
-    #     pet['Hunger'] = min(10, pet['Hunger'] + effects.get('hunger', 0))
-    #     pet['Energy'] = min(10, pet['Energy'] + effects.get('energy', 0))
-    #     pet['Happiness'] = min(10, pet['Happiness'] + effects.get('happiness', 0))
-    #     game.save_pet(pet)
-    # return redirect(url_for('menu', username=username))
-    
+    username = request.form['username']
+    pet_name = request.form['pet_name']
+    food = request.form.get('food', 'Kibble')  # Default to 'Kibble' if not specified
+    game = Game(username)
+    pet = next((p for p in game.get_pets() if p['Name'] == pet_name), None)
+    if pet:
+        food_effects = {
+            'Kibble': {'hunger': 2, 'energy': 1, 'happiness': 1},
+            'Fish': {'hunger': 3, 'energy': 2, 'happiness': 2},
+            'Chicken': {'hunger': 4, 'energy': 3, 'happiness': 3},
+            'Vegetables': {'hunger': 1, 'energy': 2, 'happiness': 1}
+        }
+        effects = food_effects.get(food, {})
+        pet['Hunger'] = min(10, pet['Hunger'] + effects.get('hunger', 0))
+        pet['Energy'] = min(10, pet['Energy'] + effects.get('energy', 0))
+        pet['Happiness'] = min(10, pet['Happiness'] + effects.get('happiness', 0))
+        game.save_pet(pet)
+    return redirect(url_for('menu', username=username))
+
 # @app.route('/feed_pet', methods=['POST'])
 # def feed_pet():
 #     username = request.form['username']
