@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Game - Fight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fight with Your Pet</h1>
+        <p>{{ pet['Name'] }} is ready to battle!</p>
+        <p>Rules: Each turn, choose a move. Punches and kicks deal -1 health points. Jump prevents a kick from doing damage, and dodge prevents a punch from doing damage. The pet with 0 health points loses.</p>
+        <form action="{{ url_for('fight_pet') }}" method="post">
+            <input type="hidden" name="username" value="{{ username }}">
+            <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
+            <input type="submit" name="move" value="Punch">
+            <input type="submit" name="move" value="Kick">
+            <input type="submit" name="move" value="Jump">
+            <input type="submit" name="move" value="Dodge">
+        </form>
+        <a href="{{ url_for('menu', username=username) }}">Back to Menu</a>
+    </div>
+</body>
+</html>
