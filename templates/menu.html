@@ -11,9 +11,10 @@
         <h1>Welcome, {{ username }}!</h1>
 
         <h2>Your Pets:</h2>
-        <h2>Your Pets:</h2>
+        
         <ul>
             {% if pets %}
+                <h2>Your Pets:</h2>
                 {% for pet in pets %}
                     <li>
                         <strong>{{ pet['Name'] }}<strong> the {{ pet['Animal Type'] }}
