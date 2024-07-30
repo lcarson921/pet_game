@@ -37,6 +37,8 @@ class Game:
         self.save_users()
 
     def get_user(self):
+        
+
         self.load_users()
         for user in self.allUsers:
             if user['Username'] == self.username:
@@ -117,15 +119,26 @@ def index():
 
 @app.route('/menu', methods=['POST', 'GET'])
 def menu():
+
     if request.method == 'POST':
         username = request.form['username']
     else:
         username = request.args.get('username')
 
     game = Game(username)
-    user_data = game.get_user()  # Load user data including pets
-    pets = user_data['Pets']  # Get the list of pets from the user data
+    user_data = game.get_user()
+    pets = user_data.get('Pets', [])  # Use .get() to safely access the 'Pets' key
     return render_template('menu.html', username=username, pets=pets)
+
+    # if request.method == 'POST':
+    #     username = request.form['username']
+    # else:
+    #     username = request.args.get('username')
+
+    # game = Game(username)
+    # user_data = game.get_user()  # Load user data including pets
+    # pets = user_data['Pets']  # Get the list of pets from the user data
+    # return render_template('menu.html', username=username, pets=pets)
 
     # if request.method == 'POST':
     #     username = request.form['username']
