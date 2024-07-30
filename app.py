@@ -2,8 +2,16 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 import random
 import openai  # Ensure you have the OpenAI library installed and configured
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
+
+# Set the OpenAI API key
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class Game:
     def __init__(self, username):
@@ -64,14 +72,14 @@ class Game:
         name = petDict["Name"]
         species = petDict["Animal Type"]
         prompt = f"Create a four-sentence backstory for the user's pet named {name}, which is a {species}."
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ]
         )
-        return str(response.choices[0].message['content'])
+        return response.choices[0].message.content
 
 class Pet:
     def __init__(self, name, animal_type):
@@ -106,12 +114,33 @@ class Hedgehog(Pet):
 def index():
     return render_template('index.html')
 
-@app.route('/menu', methods=['POST'])
+@app.route('/menu', methods=['POST', 'GET'])
 def menu():
-    username = request.form['username']
-    game = Game(username)
-    user_data = game.get_user()
-    return render_template('menu.html', username=username, pets=user_data['Pets'])
+    if request.method == 'POST':
+        username = request.form['username']
+        game = Game(username)
+        #user_data = game.get_user()
+        pets = game.get_pets()
+        return render_template('menu.html', username=username, pets=pets)
+    else:
+        username = request.args.get('username')
+        game = Game(username)
+        pets = game.get_pets()
+        return render_template('menu.html', username=username, pets=pets)  
+
+@app.route('/activity', methods=['POST'])
+def activity():
+    username = request.form.get('username')
+    selected_activity = request.form.get('activity')
+    if selected_activity == "Feed":
+        return redirect(url_for('feed_pet', username=username))
+    elif selected_activity == "Play":
+        return redirect(url_for('play_pet', username=username))
+    elif selected_activity == "Fight":
+        return redirect(url_for('fight_pet', username=username))
+    elif selected_activity == "Quit":
+        return redirect(url_for('index'))  # Or another action for quitting
+    return redirect(url_for('menu', username=username))
 
 @app.route('/create_pet', methods=['POST'])
 def create_pet():
@@ -126,7 +155,7 @@ def create_pet():
 def feed_pet():
     username = request.form['username']
     pet_name = request.form['pet_name']
-    food = request.form['food']
+    food = request.form.get('food', 'Kibble')  # Default to 'Kibble' if not specified
     game = Game(username)
     pet = next((p for p in game.get_pets() if p['Name'] == pet_name), None)
     if pet:

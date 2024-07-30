@@ -1,0 +1,160 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif; /* Replace with actual font used in the design */
+    background-color: #F9F8F6; /* Light off-white background */
+    color: #333; /* Dark gray text color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1, h2, h3, label {
+    font-family: 'Georgia', serif; /* Serif font for headings */
+    color: #333; /* Dark gray */
+    margin: 20px 0;
+    font-weight: normal;
+    text-align: center; /* Center headings */
+}
+
+p {
+    font-family: 'Arial', sans-serif; /* Sans-serif for body text */
+    color: #666; /* Medium gray for body text */
+    line-height: 1.6;
+    margin: 15px 0;
+    text-align: center; /* Center paragraphs */
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents horizontally */
+    justify-content: center; /* Center contents vertically */
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #EFEFEF;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar a {
+    color: #333;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Button Styles */
+button, .btn {
+    background-color: #7D7568; /* Olive green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+}
+
+button:hover, .btn:hover {
+    background-color: #A0A397; /* Slightly lighter olive */
+}
+
+/* Specific Sections */
+header {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #F9F8F6;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+
+.section {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-top: 1px solid #EFEFEF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
+
+.section-dark {
+    background-color: #D9D7D2; /* Light olive/gray */
+    color: #333;
+}
+
+.section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.section p {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #EFEFEF;
+    font-size: 0.9em;
+    color: #999;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
+
+/* Icons and Illustrations */
+.icon {
+    font-size: 2em;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .section p {
+        padding: 0 20px;
+    }
+}

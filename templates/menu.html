@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Game - Menu</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome, {{ username }}</h1>
+        <h1>Welcome, {{ username }}!</h1>
+
         <h2>Your Pets:</h2>
         <ul>
-            {% for pet in pets %}
-                <li>
-                    {{ pet['Name'] }} the {{ pet['Animal Type'] }}
-                    <p><strong>Backstory:</strong> {{ pet.get('Backstory', 'No backstory available.') }}</p>
-                </li>
+            {% if pets %}
+                {% for pet in pets %}
+                    <li>
+                        {{ pet['Name'] }} the {{ pet['Animal Type'] }}
+                        <p><strong>Backstory:</strong> {{ pet.get('Backstory', 'No backstory available.') }}</p>
+                    </li>
+                {% endfor %}
             {% else %}
                 <li>You have no pets!</li>
-            {% endfor %}
+            {% endif %}
         </ul>
+
         <h2>Create a New Pet:</h2>
         <form action="{{ url_for('create_pet') }}" method="post">
             <input type="hidden" name="username" value="{{ username }}">
@@ -33,9 +37,11 @@
             <input type="text" id="pet_name" name="pet_name" required>
             <input type="submit" value="Create Pet">
         </form>
+
         <h2>Game Options:</h2>
         <form action="{{ url_for('activity') }}" method="post">
             <input type="hidden" name="username" value="{{ username }}">
+            <input type="hidden" name="pet_name" value="{{ pet['Name'] if pets else '' }}">
             <input type="submit" name="activity" value="Feed">
             <input type="submit" name="activity" value="Play">
             <input type="submit" name="activity" value="Fight">
