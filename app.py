@@ -46,6 +46,7 @@ class Game:
         return self.allUsers[-1]
 
     def create_pet(self, pet_type, name):
+        self.get_user()
         if len(self.userPetlist) < 3:
             if pet_type == 'Dragon':
                 new_pet = Dragon(name)
@@ -118,15 +119,25 @@ def index():
 def menu():
     if request.method == 'POST':
         username = request.form['username']
-        game = Game(username)
-        #user_data = game.get_user()
-        pets = game.get_pets()
-        return render_template('menu.html', username=username, pets=pets)
     else:
         username = request.args.get('username')
-        game = Game(username)
-        pets = game.get_pets()
-        return render_template('menu.html', username=username, pets=pets)  
+
+    game = Game(username)
+    user_data = game.get_user()  # Load user data including pets
+    pets = user_data['Pets']  # Get the list of pets from the user data
+    return render_template('menu.html', username=username, pets=pets)
+
+    # if request.method == 'POST':
+    #     username = request.form['username']
+    #     game = Game(username)
+    #     #user_data = game.get_user()
+    #     pets = game.get_pets()
+    #     return render_template('menu.html', username=username, pets=pets)
+    # else:
+    #     username = request.args.get('username')
+    #     game = Game(username)
+    #     pets = game.get_pets()
+    #     return render_template('menu.html', username=username, pets=pets) 
 
 @app.route('/activity', methods=['POST'])
 def activity():
@@ -142,7 +153,7 @@ def activity():
         return redirect(url_for('index'))  # Or another action for quitting
     return redirect(url_for('menu', username=username))
 
-@app.route('/create_pet', methods=['POST']) # (original version)
+@app.route('/create_pet', methods=['POST'])
 def create_pet():
     username = request.form['username']
     pet_type = request.form['pet_type']
@@ -150,6 +161,15 @@ def create_pet():
     game = Game(username)
     game.create_pet(pet_type, pet_name)
     return redirect(url_for('menu', username=username))
+
+# @app.route('/create_pet', methods=['POST']) # (original version)
+# def create_pet():
+#     username = request.form['username']
+#     pet_type = request.form['pet_type']
+#     pet_name = request.form['pet_name']
+#     game = Game(username)
+#     game.create_pet(pet_type, pet_name)
+#     return redirect(url_for('menu', username=username))
 
 
 @app.route('/feed_pet', methods=['POST'])
