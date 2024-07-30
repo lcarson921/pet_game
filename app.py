@@ -155,16 +155,32 @@ def menu():
 @app.route('/activity', methods=['POST'])
 def activity():
     username = request.form.get('username')
+    pet_name = request.form.get('pet_name')
     selected_activity = request.form.get('activity')
+
     if selected_activity == "Feed":
-        return redirect(url_for('feed_pet', username=username))
+        return redirect(url_for('feed_pet', username=username, pet_name=pet_name))
     elif selected_activity == "Play":
-        return redirect(url_for('play_pet', username=username))
+        return redirect(url_for('play_pet', username=username, pet_name=pet_name))
     elif selected_activity == "Fight":
-        return redirect(url_for('fight_pet', username=username))
+        return redirect(url_for('fight_pet', username=username, pet_name=pet_name))
     elif selected_activity == "Quit":
         return redirect(url_for('index'))  # Or another action for quitting
     return redirect(url_for('menu', username=username))
+
+# @app.route('/activity', methods=['POST'])
+# def activity():
+#     username = request.form.get('username')
+#     selected_activity = request.form.get('activity')
+#     if selected_activity == "Feed":
+#         return redirect(url_for('feed_pet', username=username))
+#     elif selected_activity == "Play":
+#         return redirect(url_for('play_pet', username=username))
+#     elif selected_activity == "Fight":
+#         return redirect(url_for('fight_pet', username=username))
+#     elif selected_activity == "Quit":
+#         return redirect(url_for('index'))  # Or another action for quitting
+#     return redirect(url_for('menu', username=username))
 
 @app.route('/create_pet', methods=['POST'])
 def create_pet():
@@ -183,7 +199,6 @@ def create_pet():
 #     game = Game(username)
 #     game.create_pet(pet_type, pet_name)
 #     return redirect(url_for('menu', username=username))
-
 
 @app.route('/feed_pet', methods=['POST'])
 def feed_pet():
@@ -205,6 +220,26 @@ def feed_pet():
         pet['Happiness'] = min(10, pet['Happiness'] + effects.get('happiness', 0))
         game.save_pet(pet)
     return redirect(url_for('menu', username=username))
+# @app.route('/feed_pet', methods=['POST'])
+# def feed_pet():
+#     username = request.form['username']
+#     pet_name = request.form['pet_name']
+#     food = request.form.get('food', 'Kibble')  # Default to 'Kibble' if not specified
+#     game = Game(username)
+#     pet = next((p for p in game.get_pets() if p['Name'] == pet_name), None)
+#     if pet:
+#         food_effects = {
+#             'Kibble': {'hunger': 2, 'energy': 1, 'happiness': 1},
+#             'Fish': {'hunger': 3, 'energy': 2, 'happiness': 2},
+#             'Chicken': {'hunger': 4, 'energy': 3, 'happiness': 3},
+#             'Vegetables': {'hunger': 1, 'energy': 2, 'happiness': 1}
+#         }
+#         effects = food_effects.get(food, {})
+#         pet['Hunger'] = min(10, pet['Hunger'] + effects.get('hunger', 0))
+#         pet['Energy'] = min(10, pet['Energy'] + effects.get('energy', 0))
+#         pet['Happiness'] = min(10, pet['Happiness'] + effects.get('happiness', 0))
+#         game.save_pet(pet)
+#     return redirect(url_for('menu', username=username))
 
 @app.route('/play_pet', methods=['POST'])
 def play_pet():
