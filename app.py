@@ -159,7 +159,7 @@ def activity():
     selected_activity = request.form.get('activity')
 
     if selected_activity == "Feed":
-        return redirect(url_for('feed', username=username, pet_name=pet_name))
+        return redirect(url_for('feed_pet', username=username, pet_name=pet_name))
     elif selected_activity == "Play":
         return redirect(url_for('play_pet', username=username, pet_name=pet_name))
     elif selected_activity == "Fight":
@@ -200,7 +200,7 @@ def create_pet():
 #     game.create_pet(pet_type, pet_name)
 #     return redirect(url_for('menu', username=username))
 
-@app.route('/feed', methods=['POST'])
+@app.route('/feed_pet', methods=['POST'])
 def feed_pet():
     username = request.form['username']
     pet_name = request.form['pet_name']
