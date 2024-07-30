@@ -142,7 +142,7 @@ def activity():
         return redirect(url_for('index'))  # Or another action for quitting
     return redirect(url_for('menu', username=username))
 
-@app.route('/create_pet', methods=['POST']) (original version)
+@app.route('/create_pet', methods=['POST']) # (original version)
 def create_pet():
     username = request.form['username']
     pet_type = request.form['pet_type']
