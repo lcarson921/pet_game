@@ -3,6 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Pet</title>
+</head>
+<body>
+    <h1>Feed Your Pet</h1>
+    <form action="{{ url_for('feed_pet') }}" method="POST">
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="pet_name" value="{{ pet_name }}">
+        <button type="submit" name="food" value="Kibble">Kibble</button>
+        <button type="submit" name="food" value="Fish">Fish</button>
+        <button type="submit" name="food" value="Chicken">Chicken</button>
+        <button type="submit" name="food" value="Vegetables">Vegetables</button>
+    </form>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Game - Feed</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
 </head>
@@ -24,4 +46,4 @@
         <a href="{{ url_for('menu', username=username) }}">Back to Menu</a>
     </div>
 </body>
-</html>
+</html> -->
