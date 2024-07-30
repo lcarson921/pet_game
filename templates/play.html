@@ -12,7 +12,7 @@
         <p>{{ pet['Name'] }} is excited to play!</p>
         <form action="{{ url_for('play_pet') }}" method="post">
             <input type="hidden" name="username" value="{{ username }}">
-            <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
+            <input type="hidden" name="pet_name" value="{{ pet_name }}">
             <input type="submit" value="Play">
         </form>
         <a href="{{ url_for('menu', username=username) }}">Back to Menu</a>
