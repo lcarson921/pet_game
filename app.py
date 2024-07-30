@@ -161,7 +161,7 @@ def create_pet():
         game.create_pet(pet_type, pet_name)
 
     pets = game.get_pets()
-    return render_template('create_pet.html', username=username, pets=pets)
+    return render_template('menu.html', username=username, pets=pets)
 
 @app.route('/feed_pet', methods=['POST'])
 def feed_pet():
