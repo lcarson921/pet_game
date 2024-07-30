@@ -38,9 +38,10 @@
             <input type="text" id="pet_name" name="pet_name" required>
             <input type="submit" value="Create Pet">
         </form>
-
-        <form action="{{ url_for('activity') }}" method="post">
+        
+        <form action="{{ url_for('activity') }}" method="POST">
             <input type="hidden" name="username" value="{{ username }}">
+            
             <label for="pet_name">Select a Pet:</label>
             <select name="pet_name" id="pet_name">
                 {% for pet in pets %}
