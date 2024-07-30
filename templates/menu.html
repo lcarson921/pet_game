@@ -3,6 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Menu</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1>
+
+    <form action="{{ url_for('activity') }}" method="POST">
+        <input type="hidden" name="username" value="{{ username }}">
+        
+        <label for="pet_name">Select a Pet:</label>
+        <select name="pet_name" id="pet_name">
+            {% for pet in pets %}
+                <option value="{{ pet['Name'] }}">{{ pet['Name'] }} ({{ pet['Animal Type'] }})</option>
+            {% endfor %}
+        </select>
+        
+        <label for="activity">Choose an Activity:</label>
+        <select name="activity" id="activity">
+            <option value="Feed">Feed</option>
+            <option value="Play">Play</option>
+            <option value="Fight">Fight</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Game - Menu</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
 </head>
@@ -50,4 +81,4 @@
         </form>
     </div>
 </body>
-</html>
+</html> -->
