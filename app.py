@@ -142,14 +142,26 @@ def activity():
         return redirect(url_for('index'))  # Or another action for quitting
     return redirect(url_for('menu', username=username))
 
-@app.route('/create_pet', methods=['POST'])
+# @app.route('/create_pet', methods=['POST']) (original version)
+# def create_pet():
+#     username = request.form['username']
+#     pet_type = request.form['pet_type']
+#     pet_name = request.form['pet_name']
+#     game = Game(username)
+#     game.create_pet(pet_type, pet_name)
+#     return redirect(url_for('menu', username=username))
+
 def create_pet():
-    username = request.form['username']
-    pet_type = request.form['pet_type']
-    pet_name = request.form['pet_name']
+    username = request.form['username'] if request.method == 'POST' else request.args.get('username')
     game = Game(username)
-    game.create_pet(pet_type, pet_name)
-    return redirect(url_for('menu', username=username))
+
+    if request.method == 'POST':
+        pet_type = request.form['pet_type']
+        pet_name = request.form['pet_name']
+        game.create_pet(pet_type, pet_name)
+
+    pets = game.get_pets()
+    return render_template('create_pet.html', username=username, pets=pets)
 
 @app.route('/feed_pet', methods=['POST'])
 def feed_pet():
