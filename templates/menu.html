@@ -14,21 +14,15 @@
         
         <ul>
             {% if pets %}
-                <h2>Your Pets:</h2>
-                {% for pet in pets %}
-                    <li>
-                        <strong>{{ pet['Name'] }}<strong> the {{ pet['Animal Type'] }}
-                        <ul>
-                            <li>Hunger {{pet['Hunger']}}</li>
-                            <li>Energy {{pet['Energy']}}</li>
-                            <li>Happiness {{pet['Happiness']}}</li>
-                            <li>Backstory:</strong> {{ pet.get('Backstory', 'No backstory available.') }}</li>
-                        </ul>
-                    </li>
-                {% endfor %}
-            {% else %}
-                <li>You have no pets!</li>
-            {% endif %}
+    <ul>
+        {% for pet in pets %}
+            <li>{{ pet['Name'] }} - {{ pet['Animal Type'] }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no pets!</p>
+{% endif %}
+
         </ul>
 
         <h2>Create a New Pet:</h2>
