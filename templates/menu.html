@@ -42,7 +42,7 @@
         <h2>Game Options:</h2>
         <form action="{{ url_for('activity') }}" method="post">
             <input type="hidden" name="username" value="{{ username }}">
-            <input type="hidden" name="pet_name" value="{{ pet['Name'] if pets else '' }}">
+            
             <input type="submit" name="activity" value="Feed">
             <input type="submit" name="activity" value="Play">
             <input type="submit" name="activity" value="Fight">
