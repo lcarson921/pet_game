@@ -159,13 +159,13 @@ def activity():
     selected_activity = request.form.get('activity')
 
     if selected_activity == "Feed":
-        return redirect(url_for('feed_pet', username=username, pet_name=pet_name))
+        return render_template('feed.html', username=username, pet_name=pet_name)
     elif selected_activity == "Play":
-        return redirect(url_for('play_pet', username=username, pet_name=pet_name))
+        return render_template('play.html', username=username, pet_name=pet_name)
     elif selected_activity == "Fight":
-        return redirect(url_for('fight_pet', username=username, pet_name=pet_name))
+        return render_template('fight.html', username=username, pet_name=pet_name)
     elif selected_activity == "Quit":
-        return redirect(url_for('index'))  # Or another action for quitting
+        return redirect('index')  
     return redirect(url_for('menu', username=username))
 
 # @app.route('/activity', methods=['POST'])
