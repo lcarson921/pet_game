@@ -150,7 +150,7 @@ def activity():
 #     game = Game(username)
 #     game.create_pet(pet_type, pet_name)
 #     return redirect(url_for('menu', username=username))
-
+@app.route('/create_pet', methods=['POST'])
 def create_pet():
     username = request.form['username'] if request.method == 'POST' else request.args.get('username')
     game = Game(username)
