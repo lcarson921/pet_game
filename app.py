@@ -156,7 +156,7 @@ def menu():
 def activity():
     username = request.form.get('username')
     pet_name = request.form.get('pet_name')
-    selected_activity = request.form.get('activity')
+    selected_activity = request.form.get('activit')
 
     if selected_activity == "Feed":
         return redirect(url_for('feed_pet', username=username, pet_name=pet_name))
