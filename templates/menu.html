@@ -15,8 +15,13 @@
             {% if pets %}
                 {% for pet in pets %}
                     <li>
-                        {{ pet['Name'] }} the {{ pet['Animal Type'] }}
-                        <p><strong>Backstory:</strong> {{ pet.get('Backstory', 'No backstory available.') }}</p>
+                        <strong>{{ pet['Name'] }}<strong> the {{ pet['Animal Type'] }}
+                        <ul>
+                            <li>Hunger {{pet['Hunger']}}</li>
+                            <li>Energy {{pet['Energy']}}</li>
+                            <li>Happiness {{pet['Happiness']}}</li>
+                            <li>Backstory:</strong> {{ pet.get('Backstory', 'No backstory available.') }}</li>
+                        </ul>
                     </li>
                 {% endfor %}
             {% else %}
