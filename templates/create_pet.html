@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Pet</title>
+</head>
+<body>
+    <h1>Create a New Pet</h1>
+    <form method="POST" action="{{ url_for('create_pet') }}">
+        <input type="hidden" name="username" value="{{ username }}">
+        <label for="pet_type">Pet Type:</label>
+        <select name="pet_type" id="pet_type">
+            <option value="Dragon">Dragon</option>
+            <option value="Rock">Rock</option>
+            <option value="Hedgehog">Hedgehog</option>
+        </select>
+        <label for="pet_name">Pet Name:</label>
+        <input type="text" id="pet_name" name="pet_name" required>
+        <button type="submit">Create Pet</button>
+    </form>
+
+    <h2>Your Pets</h2>
+    {% if pets %}
+        <ul>
+            {% for pet in pets %}
+                <li>{{ pet['Name'] }} the {{ pet['Animal Type'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no pets!</p>
+    {% endif %}
+</body>
+</html>
