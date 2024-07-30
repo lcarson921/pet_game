@@ -41,7 +41,6 @@
 
         <form action="{{ url_for('activity') }}" method="post">
             <input type="hidden" name="username" value="{{ username }}">
-            
             <label for="pet_name">Select a Pet:</label>
             <select name="pet_name" id="pet_name">
                 {% for pet in pets %}
@@ -49,8 +48,8 @@
                 {% endfor %}
             </select>
             
-            <label for="activity">Choose an Activity:</label>
-            <select name="activity" id="activity">
+            <label for="activit">Choose an Activity:</label>
+            <select name="activit" id="activit">
                 <option value="Feed">Feed</option>
                 <option value="Play">Play</option>
                 <option value="Fight">Fight</option>
