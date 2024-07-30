@@ -19,30 +19,3 @@
 </body>
 </html>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Game - Feed</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Feed Your Pet</h1>
-        <p>Choose a food item to feed your pet:</p>
-        <form action="{{ url_for('feed_pet') }}" method="post">
-            <input type="hidden" name="username" value="{{ username }}">
-            <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
-            <select name="food" required>
-                <option value="Kibble">Kibble</option>
-                <option value="Fish">Fish</option>
-                <option value="Chicken">Chicken</option>
-                <option value="Vegetables">Vegetables</option>
-            </select>
-            <input type="submit" value="Feed">
-        </form>
-        <a href="{{ url_for('menu', username=username) }}">Back to Menu</a>
-    </div>
-</body>
-</html> -->
