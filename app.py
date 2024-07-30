@@ -185,7 +185,7 @@ def create_pet():
 #     return redirect(url_for('menu', username=username))
 
 
-@app.route('/feed_pet', method=['POST'])
+@app.route('/feed_pet', methods=['POST'])
 def feed_pet():
     username = request.form['username']
     pet_name = request.form['pet_name']
