@@ -87,7 +87,7 @@ class Pet:
         self.animal_type = animal_type
 
     def save_pet(self):
-        return {"Name": self.name, "Animal Type": self.animal_type, "Hunger": self.hunger, "Energy": self.energy, "Happiness": self.happiness}
+        return {"Name": self.name, "Animal Type": self.animal_type, "Hunger": self.hunger, "Energy": self.energy, "Happiness": self.happiness, "Backstory":""}
 
 class Dragon(Pet):
     def __init__(self, name):
