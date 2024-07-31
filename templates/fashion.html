@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Fashion Your Pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+</head>
+<body>
+    <h1>Fashion Your Pet</h1>
+    <h2>Pet: {{ pet['Name'] }} ({{ pet['Animal Type'] }})</h2>
+    
+    <form action="{{ url_for('fashion') }}" method="POST">
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
+        
+        <label for="accessory">Choose an accessory:</label>
+        <select name="accessory" id="accessory">
+            <option value="Hat">Hat</option>
+            <option value="Scarf">Scarf</option>
+            <option value="Glasses">Glasses</option>
+        </select>
+        
+        <button type="submit">Fashion Pet</button>
+    </form>
+    
+    <div>
+        <h3>Current Fashion</h3>
+        <pre>{{ description }}</pre>
+    </div>
+    <form action="{{ url_for('menu') }}" method="GET">
+        <input type="hidden" name="username" value="{{ username }}">
+        <button type="submit">Return to Main Menu</button>
+    </form>
+</body>
+</html>

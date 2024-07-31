@@ -14,16 +14,17 @@
         
         <ul>
             {% if pets %}
-    <ul>
-        {% for pet in pets %}
-            <li>{{ pet['Name'] }} - {{ pet['Animal Type'] }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>You have no pets!</p>
-{% endif %}
-
+                <ul>
+                    {% for pet in pets %}
+                        <li>{{ pet['Name'] }} - {{ pet['Animal Type'] }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You have no pets!</p>
+            {% endif %}
         </ul>
+
+        
 
         <h2>Create a New Pet:</h2>
         <form action="{{ url_for('create_pet') }}" method="POST">
@@ -39,33 +40,30 @@
             <input type="submit" value="Create Pet">
         </form>
         
+        <h2>Pet Activities:</h2>
         <form action="{{ url_for('activity') }}" method="POST">
             <input type="hidden" name="username" value="{{ username }}">
             
             <label for="pet_name">Select a Pet:</label>
-            <select name="pet_name" id="pet_name">
+            <select name="pet_name" id="pet_name" required>
                 {% for pet in pets %}
                     <option value="{{ pet['Name'] }}">{{ pet['Name'] }} ({{ pet['Animal Type'] }})</option>
                 {% endfor %}
             </select>
             
             <label for="activity">Choose an Activity:</label>
-            <select name="activity" id="activity">
+            <select name="activity" id="activity" required>
                 <option value="Feed">Feed</option>
                 <option value="Play">Play</option>
-                <option value="Fight">Fight</option>
+                <option value="Fashion">Fashion</option>
             </select>
             
-            <button type="submit">Submit</button>
-        </form> 
+            <button type="submit">Start Activity</button>
+        </form>
 
-        
-        <form action="{{ url_for('activity') }}" method="post">
-            <input type="hidden" name="username" value="{{ username }}">
-            
-            <input type="submit" name="activity" value="Quit">
+        <form action="{{ url_for('index') }}" method="GET">
+            <button type="submit">Quit</button>
         </form>
     </div>
 </body>
-</html> 
-
+</html>

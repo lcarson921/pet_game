@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Game - Activity</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Activity for {{ pet['Name'] }} the {{ pet['Animal Type'] }}</h1>
+        
+        {% if selected_activity == "Feed" %}
+            <h2>Feed Your Pet</h2>
+            <form action="{{ url_for('feed_pet') }}" method="POST">
+                <input type="hidden" name="username" value="{{ username }}">
+                <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
+                <button type="submit">Feed {{ pet['Name'] }}</button>
+            </form>
+            
+        {% elif selected_activity == "Play" %}
+            <h2>Play with Your Pet</h2>
+            <p>Play and increase {{ pet['Name'] }}'s happiness!</p>
+            <form action="{{ url_for('play') }}" method="POST">
+                <input type="hidden" name="username" value="{{ username }}">
+                <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
+                <button type="submit">Play with {{ pet['Name'] }}</button>
+            </form>
+            
+
+        {% elif selected_activity == "Fashion" %}
+            <h2>Dress Up Your Pet</h2>
+            <h2>Dress Up Your Pet</h2>
+            <form action="{{ url_for('fashion') }}" method="POST">
+                <input type="hidden" name="username" value="{{ username }}">
+                <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
+                <button type="submit" name="accessory" value="Bowtie">Let's Dress up</button>
+            </form>
+        {% endif %}
+
+        <form action="{{ url_for('menu') }}" method="GET">
+            <button type="submit">Back to Menu</button>
+        </form>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Game - Pet's Death</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>In Memoriam</h1>
+        <h2>Farewell, {{ pet['Name'] }}</h2>
+        <p>It is with a heavy heart that we announce the passing of your beloved pet, {{ pet['Name'] }}, the {{ pet['Animal Type'] }}.</p>
+        <p>{{ pet['Name'] }} brought joy and happiness, and will be dearly missed.</p>
+        <p>Remember the good times and cherish the memories.</p>
+        
+        <div>
+            <h3>Pet's Final Status</h3>
+            <p><strong>Energy:</strong> {{ pet['Energy'] }}</p>
+            <p><strong>Happiness:</strong> {{ pet['Happiness'] }}</p>
+            <p><strong>Hunger:</strong> {{ pet['Hunger'] }}</p>
+        </div>
+
+        <form action="{{ url_for('menu') }}" method="GET">
+            <input type="hidden" name="username" value="{{ username }}">
+            <button type="submit">Return to Main Menu</button>
+        </form>
+    </div>
+</body>
+</html>

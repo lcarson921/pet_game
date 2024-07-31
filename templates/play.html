@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Game - Play</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>Play with Your Pet</h1>
-        <p>{{ pet['Name'] }} is excited to play!</p>
-        <form action="{{ url_for('play_pet') }}" method="post">
+        <p>{{ pet_name }} is excited to play!</p>
+        <form action="{{ url_for('play') }}" method="post">
             <input type="hidden" name="username" value="{{ username }}">
             <input type="hidden" name="pet_name" value="{{ pet_name }}">
-            <input type="submit" value="Play">
+            
         </form>
-        <a href="{{ url_for('menu', username=username) }}">Back to Menu</a>
+        
+        <div>
+            <h2>{{ pet_name }}'s Current Status</h2>
+            <p>Energy: {{ pet['Energy'] }}</p>
+            <p>Happiness: {{ pet['Happiness'] }}</p>
+            <p>Hunger: {{ pet['Hunger'] }}</p>
+        </div>
     </div>
+
+    <form action="{{ url_for('menu') }}" method="GET">
+        <input type="hidden" name="username" value="{{ username }}">
+        <button type="submit">Return to Main Menu</button>
+    </form>
+
 </body>
 </html>

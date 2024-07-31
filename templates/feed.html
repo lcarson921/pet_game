@@ -16,6 +16,21 @@
         <button type="submit" name="food" value="Chicken">Chicken</button>
         <button type="submit" name="food" value="Vegetables">Vegetables</button>
     </form>
+    <ul>
+        {% for pet in pets %}
+            {% if pet['Name'] == pet_name %}
+                <h2>Updated Stats for {{ pet['Name'] }}:</h2>
+                <p>Hunger: {{ pet['Hunger'] }}</p>
+                <p>Energy: {{ pet['Energy'] }}</p>
+                <p>Happiness: {{ pet['Happiness'] }}</p>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+    <form action="{{ url_for('menu') }}" method="GET">
+        <input type="hidden" name="username" value="{{ username }}">
+        <button type="submit">Return to Main Menu</button>
+    </form>
 </body>
 </html>
-
