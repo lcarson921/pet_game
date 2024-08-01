@@ -30,7 +30,6 @@
 
         {% elif selected_activity == "Fashion" %}
             <h2>Dress Up Your Pet</h2>
-            <h2>Dress Up Your Pet</h2>
             <form action="{{ url_for('fashion') }}" method="POST">
                 <input type="hidden" name="username" value="{{ username }}">
                 <input type="hidden" name="pet_name" value="{{ pet['Name'] }}">
